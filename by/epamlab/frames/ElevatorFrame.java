@@ -6,6 +6,7 @@ import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import by.epamlab.controllers.ControllerGUI;
 
@@ -19,20 +20,26 @@ public class ElevatorFrame extends JFrame {
 	
 	public ElevatorFrame(int storyNumber, Thread[] transportationTasks, ControllerGUI controller) throws HeadlessException {
 		super();
-		//mainPanel = new MainElevatorPanel(storyNumber);
+		final int HEIGHT = 750;
+		final int WIDTH = 800;
 		messagePanel = new MessagePanel(transportationTasks, controller);
 		elevPanel = new ElevatorPanel(storyNumber);
 		storyPanel = new StoryPanel(storyNumber);
-		JPanel pane = new JPanel(new GridLayout(1,3));
-		pane.add(elevPanel);
-		pane.add(storyPanel);
+		JPanel pane = new JPanel(new GridLayout(1,2));
+		JPanel elevatorPanel = new JPanel(new GridLayout(1,2));
+		elevatorPanel.setSize(400, storyNumber * 70);
+		elevatorPanel.add(elevPanel);
+		elevatorPanel.add(storyPanel);
+		JScrollPane scrollpane = new JScrollPane(elevatorPanel);
+		scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		pane.add(scrollpane);
 		pane.add(messagePanel);
 		setContentPane(pane);
+		setSize(WIDTH, HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Elevator");
-		final int STORY_SIZE = 70;
-		final int WIDTH = 750;
-		setPreferredSize(new Dimension(WIDTH, STORY_SIZE * storyNumber));
+		setSize(WIDTH, HEIGHT);
+		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		pack();
 		setVisible(true);
 	}
