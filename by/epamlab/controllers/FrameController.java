@@ -28,7 +28,7 @@ public class FrameController {
 	
 	//change direction if needs
 	public void selectDirection(int preStory, int curStory) {
-		final int STEP_ELEVATOR = 70;
+		final int STEP_ELEVATOR = 60;
 		prePos = (storyNumber - preStory) * STEP_ELEVATOR;
 		curPos = (storyNumber - curStory) * STEP_ELEVATOR;
 		if (curPos > prePos) {

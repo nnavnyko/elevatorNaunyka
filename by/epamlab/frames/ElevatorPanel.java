@@ -24,7 +24,7 @@ public class ElevatorPanel extends JPanel {
 
 	@Override
 	public void paint(Graphics g) {
-		super.paint(g);
+		g.clearRect(0, 0, getWidth(), getHeight());
 		drawElevator(g, posElevator);
 	}
 
